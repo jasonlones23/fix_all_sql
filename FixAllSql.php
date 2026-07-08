@@ -105,6 +105,13 @@ class FixAllSql extends AbstractExternalModule
         return self::SELECTION_MODE_DETAILS;
     }
 
+    public function getDataTable($pid)
+    {
+        return method_exists("\\REDCap", "getDataTable")
+            ? \REDCap::getDataTable($pid)
+            : "redcap_data";
+    }
+
     //Fix workflow:
     public function fix($project_id, array $overrides = [])
     {
@@ -815,6 +822,15 @@ class FixAllSql extends AbstractExternalModule
         $project_id = (int) $project_id;
         $event_id = (int) $event_id;
         $recordEscaped = db_escape($record);
+        $dataTable = preg_replace(
+            "/[^A-Za-z0-9_]/",
+            "",
+            (string) $this->getDataTable($project_id)
+        );
+
+        if ($dataTable === "") {
+            $dataTable = "redcap_data";
+        }
 
         $fieldList = array_map(function ($field) {
             return "'" . db_escape($field) . "'";
@@ -823,7 +839,7 @@ class FixAllSql extends AbstractExternalModule
         $sql =
             "
             SELECT DISTINCT instance
-            FROM redcap_data
+            FROM {$dataTable}
             WHERE project_id = {$project_id}
               AND record = '{$recordEscaped}'
               AND event_id = {$event_id}
