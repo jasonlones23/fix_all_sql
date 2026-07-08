@@ -1,0 +1,87 @@
+{
+    "name":  "Fix All SQL",
+    "namespace":  "OSUCOMRIT\\FixAllSql",
+    "description":  "Project-wide discovery and fix for Dynamic Query (SQL) fields, modeled after Data Quality Rule H.",
+    "framework-version":  15,
+    "version":  "1.0.0",
+    "authors":  [
+                    {
+                        "name":  "Jason Lones",
+                        "email":  "jason.lones@osumc.edu",
+                        "institution":  "The Ohio State University"
+                    }
+                ],
+    "links":  {
+                  "project":  [
+                                  {
+                                      "name":  "Fix All SQL",
+                                      "key":  "fixallsqlui",
+                                      "icon":  "fas fa-database",
+                                      "url":  "FixAllSqlUI.php",
+                                      "show-header-and-footer":  true
+                                  }
+                              ]
+              },
+    "project-settings":  [
+                             {
+                                 "key":  "selection_mode",
+                                 "name":  "Default Selection Mode",
+                                 "type":  "dropdown",
+                                 "choices":  [
+                                                 {
+                                                     "value":  "keep_if_valid",
+                                                     "name":  "Keep If Valid"
+                                                 },
+                                                 {
+                                                     "value":  "first",
+                                                     "name":  "First"
+                                                 },
+                                                 {
+                                                     "value":  "min",
+                                                     "name":  "Min"
+                                                 },
+                                                 {
+                                                     "value":  "max",
+                                                     "name":  "Max"
+                                                 },
+                                                 {
+                                                     "value":  "none",
+                                                     "name":  "None"
+                                                 }
+                                             ],
+                                 "default":  "keep_if_valid"
+                             },
+                             {
+                                 "key":  "default_discrepancy_limit",
+                                 "name":  "Default Discrepancy Scan Limit",
+                                 "type":  "number",
+                                 "default":  1000
+                             }
+                         ],
+    "system-settings":  [
+                            {
+                                "key":  "enable_module",
+                                "name":  "Enable Fix All SQL",
+                                "type":  "checkbox",
+                                "default":  false
+                            },
+                            {
+                                "key":  "max_records_threshold",
+                                "name":  "Safety Cut-Off - Max Records Checked Per Discover/Fix:",
+                                "type":  "number",
+                                "default":  0
+                            },
+                            {
+                                "key":  "max_record_range_size",
+                                "name":  "Optional stricter cap - Max records allowed in a single specific-record range (0 = use built-in max)",
+                                "type":  "number",
+                                "default":  0
+                            },
+                            {
+                                "key":  "max_discrepancy_limit",
+                                "name":  "Optional stricter cap - Max discrepancy scan limit allowed (0 = use built-in max)",
+                                "type":  "number",
+                                "default":  0
+                            }
+                        ]
+}
