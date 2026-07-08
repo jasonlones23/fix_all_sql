@@ -2,7 +2,7 @@
     "name":  "Fix All SQL",
     "namespace":  "OSUCOMRIT\\FixAllSql",
     "description":  "Project-wide discovery and fix for Dynamic Query (SQL) fields, modeled after Data Quality Rule H.",
-    "framework-version":  15,
+    "framework-version":  16,
     "version":  "1.0.0",
     "authors":  [
                     {
